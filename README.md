@@ -4,14 +4,6 @@ Install
 sudo apt-get install libfcgi-dev spawn-fcgi nginx curl
 
 
-
-Code from this article
-----------------------
-
-http://chriswu.me/blog/writing-hello-world-in-fcgi-with-c-plus-plus/
-
-
-
 Running the service
 -------------------
 
@@ -32,3 +24,10 @@ Benchmarks/Testing
 curl --data "hello" http://localhost:81/
 ab -n 2000 -c 10 http://localhost:81/
 httperf --client=0/1 --server=localhost --port=81 --uri=/ --send-buffer=4096 --recv-buffer=16384 --num-conns=10 --num-calls=2000
+
+
+
+Code from this article
+----------------------
+
+http://chriswu.me/blog/writing-hello-world-in-fcgi-with-c-plus-plus/
