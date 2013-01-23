@@ -8,11 +8,15 @@ Running the service
 -------------------
 
  sudo mv /etc/nginx/nginx.conf /etc/nginx/old_nginx.conf.bk
+ 
  sudo ln -s `pwd`/nginx.con /etc/nginx/nginx.conf
+ 
  sudo /etc/init.d/nginx restart
+ 
  sudo /etc/init.d/
 
  ./make
+ 
  ./start
 
  (remove the -n switch from the start executable if you want it to run in the background)
