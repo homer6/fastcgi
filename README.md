@@ -1,7 +1,8 @@
 Install
 -------
 
- sudo apt-get install libfcgi-dev spawn-fcgi nginx curl
+ sudo apt-get install libfcgi-dev spawn-fcgi nginx curl make g++ libssl-dev
+
 
 
 Running the service
