@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bitset>
 #include "fcgio.h"
 
 #include <sys/time.h>
@@ -17,6 +18,37 @@ using namespace std;
 
 #define INPUT_BUFFER_SIZE 10000
 #define MAX_INPUT_MESSAGE_BODY 100000000  //100MB
+
+
+template< class T >
+void print_as_binary( T value, ostream& output_stream ){
+
+    bitset< sizeof(T) * 8 > x( value );
+
+    output_stream << x ;
+
+}
+
+
+void print_as_hex( string source_string, ostream& output_stream ){
+
+    size_t number_of_characters = source_string.size();
+
+    for( size_t x = 0; x < number_of_characters; x++ ){
+
+        output_stream << hex
+                      << setfill('0') << setw(2)
+                      << int(source_string[ x ]) << " ";
+
+        if( (x + 1) % 16 == 0 ){
+            output_stream << "<br />" << endl;
+        }
+
+    }
+
+}
+
+
 
 
 class Request{
@@ -172,9 +204,13 @@ int main( void ){
 
         x++;
 
-
+        my_timer.start();
 
         request->reload();
+
+        //cout << request->message_body << endl;
+        print_as_hex( request->message_body, cout );
+        cout << endl;
 
         fcgi_streambuf cin_fcgi_streambuf( fastcgi_request.in );
         fcgi_streambuf cout_fcgi_streambuf( fastcgi_request.out );
@@ -183,8 +219,6 @@ int main( void ){
         cin.rdbuf( &cin_fcgi_streambuf );
         cout.rdbuf( &cout_fcgi_streambuf );
         cerr.rdbuf( &cerr_fcgi_streambuf );
-
-        my_timer.start();
 
         cout << "Content-type: text/html\r\n"
              << "\r\n"
@@ -201,6 +235,12 @@ int main( void ){
 
         cout << sha256(request->message_body) << endl;
         //cout << request->message_body << endl;
+
+
+
+        cout << endl;
+
+        cout << sizeof( FCGX_Request ) << endl;
 
         cout << x << "<br/>" << endl;
 
