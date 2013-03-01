@@ -1,7 +1,7 @@
 g++ -Wall -mtune=native -O3 \
-	main.cpp \
+	main_new.cpp \
 	-lfcgi++ -lfcgi -lcrypto \
-	-o hello_world
+	-g -o hello_world
 
 	
 	
